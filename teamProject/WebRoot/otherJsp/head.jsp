@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<td>还书</td>
 	  			<td>读者管理</td>
 	  			<td>图书管理</td>
-	  			<td style="padding-right:70px;">关于</td>
+	  			<td style="padding-right:70px;"><span onclick="location.href='about/about.jsp'" style='cursor:hand'>关于</span></td>
 	  		</tr>
 	  	</table>
   	</div>
