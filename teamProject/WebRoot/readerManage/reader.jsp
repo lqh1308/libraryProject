@@ -21,10 +21,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
   </head>
-  	<div >
-  		<a name="introduce" id="introduce">目前，包括校本部和新校区两个分馆，新图书馆面积34500平方米，是湖南省高校中最大的图书馆之一，
-  		于2013年9月新学期正式启用。藏书300多万册，其中纸本藏书200多万册，电子图书43.68万册。</a>
-  	</div>
-  <body>
+  
+  <body style="margin:0; padding:0; bgcolor:#DDD">
+	  	<table style="margin:auto; width:1250px;">
+	  		<tr>
+	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/head.jsp"></jsp:include></td>
+	  		</tr>
+	  		<tr>
+	  			<td height="600px" width="25%" bgcolor="#EEE">
+	  			</td>
+	  			<td height="600px" width="75%" bgcolor="#EEE"></td>
+	  		</tr>
+	  		<tr>
+	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>
+	  		</tr>
+	  	</table>
   </body>
 </html>

@@ -22,9 +22,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <body>
-  	<div>
-  		<p align="center"><img src="../image/图书馆简介.gif"></img></p>
-  	</div>
+  <body style="margin:0; padding:0; bgcolor:#DDD">
+	  	<table style="margin:auto; width:1250px;">
+	  		<tr>
+	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/head.jsp"></jsp:include></td>
+	  		</tr>
+	  		<tr>
+	  			<td height="600px" width="25%" bgcolor="#EEE">
+	  			</td>
+	  			<td height="600px" width="75%" bgcolor="#EEE"></td>
+	  		</tr>
+	  		<tr>
+	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>
+	  		</tr>
+	  	</table>
   </body>
 </html>
