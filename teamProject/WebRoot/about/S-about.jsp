@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>图书管理系统</title>
+    <title>图书查询系统</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -22,17 +22,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-   <body style="margin:0; padding:0; bgcolor:#DDD">
-	  	<table style="margin:auto; width:1250px;">
+  <body style="margin:0; padding:0; bgcolor:#DDD">
+  	<table style="margin:auto; width:1250px;">
 	  		<tr>
-	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/headStu.jsp"></jsp:include></td>
+	  			<td width="100%" height="200px"><jsp:include page="/otherJsp/headStu.jsp"></jsp:include></td>
 	  		</tr>
 	  		<tr>
-	  			<td height="400px" width="25%" bgcolor="#EEE" style="padding-left:10px;"></td>
-	  			<td height="400px" width="75%" bgcolor="#EEE">什么都没有，快去查询吧</td>
-	  		</tr>
+	  			 <td width="100%" height="50px" background="#EEE" align="center">
+	  			 	<jsp:include page="/about/about-top.jsp"></jsp:include>
+  				 </td>
 	  		<tr>
-	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>
+	  			<td height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>
 	  		</tr>
 	  	</table>
   </body>

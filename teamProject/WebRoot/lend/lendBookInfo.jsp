@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			text-align:center;
 			border:1px solid #FFF; 
 			backgrond:#EEE;
-			margin-left:2px;
+			margin-left:2px;s
 		}
 	</style>
   </head>
@@ -38,12 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</tr>
   		<s:iterator value="#request.list" id="lend">
   			<tr>
-  				<td><s:property value="#lend.bookId"/></td>
-  				<td><s:property value="#lend.ISBN"/></td>
-  				<td><s:property value="#lend.bookName"/></td>
-  				<td><s:property value="#lend.publisher"/></td>
-  				<td><s:property value="#lend.price"/></td>
-  				<td><s:date name="#lend.lTime" format="yyyy-MM-dd"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.bookId"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.ISBN"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.bookName"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.publisher"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.price"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:date name="#lend.lendTime" format="yyyy-MM-dd"/></td>
   			</tr>
   		</s:iterator>
   	</table>

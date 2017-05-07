@@ -2,8 +2,6 @@ package com.lqh.model;
 
 import java.sql.Date;
 
-import javax.xml.crypto.Data;
-
 public class Lend {
 	private String bookId;
 	private String readerId;
@@ -18,11 +16,11 @@ public class Lend {
 	public void setBookId(String bookId) {
 		this.bookId = bookId;
 	}
-	public String getReadId() {
+	public String getReaderId() {
 		return readerId;
 	}
-	public void setReadId(String readId) {
-		this.readerId = readId;
+	public void setReaderId(String readerId) {
+		this.readerId = readerId;
 	}
 	public String getBookName() {
 		return bookName;
@@ -36,8 +34,8 @@ public class Lend {
 	public void setISBN(String iSBN) {
 		ISBN = iSBN;
 	}
-	public Data getLendTime() {
-		return (Data) lendTime;
+	public Date getLendTime() {
+		return (Date) lendTime;
 	}
 	public void setLendTime(Date date) {
 		this.lendTime = date;

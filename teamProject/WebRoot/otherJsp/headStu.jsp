@@ -26,17 +26,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	<table>
 	  		<tr>
 	  			<td rowspan="2">
-	  			<img src="image/lib-1.jpg" width="420" height="120"/></td>
-	  			<td colspan="6" width="700px">
+	  			<img src="image/lib3.jpg" width="420" height="120"/></td>
+	  			<td colspan="7" width="700px">
 	  			<h1><img src="image/book.jpg" width="30px" height="30px" style="padding-top:10px;">图书查询系统</h1></td>
 	  		</tr>
-	  		<tr>
-	  			<td style="width:100px;"></td>
-	  			<td bgcolor="#EEE"><span style="cursor:hand">图书查询</span></td>
-	  			<td bgcolor="#EEE"><span style="cursor:hand">借书查询</span></td>
-	  			<td bgcolor="#EEE"><span onclick="location.href='lend.jsp'" style='cursor:hand'>借书</span></td>
-	  			<td bgcolor="#EEE"><span onclick="" style="cursor:hand">还书</span></td>
-	  			<td bgcolor="#EEE" style="margin-right:70px;"><span onclick="location.href='about.jsp'" style='cursor:hand'>关于</span></td>
+	  		<tr style="font-size:20px; font-weight:bold; color:#666;">
+	  			<td style="width:150px;"></td>
+	  			<td><span onclick="location.href='searchBook/S-search.jsp'" style="cursor:hand">图书查询</span></td>
+	  			<td><span onclick="location.href='lend/S-lend.jsp'" style="cursor:hand">借书查询</span></td>
+	  			<td><span onclick="location.href='lendCheck/S-lendCheck.jsp'" style='cursor:hand'>借书</span></td>
+	  			<td><span onclick="location.href='returnBook/S-return.jsp'" style="cursor:hand">还书</span></td>
+	  			<td><span onclick="location.href='about/S-about.jsp'" style='cursor:hand'>关于</span></td>
+	  			<td style="width:50px; padding-right:30px;"></td>
 	  		</tr>
 	  	</table>
   	</div>

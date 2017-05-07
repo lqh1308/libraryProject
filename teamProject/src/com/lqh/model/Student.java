@@ -1,13 +1,13 @@
 package com.lqh.model;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 public class Student {
 	private String readerId;
 	private String name;
 	private String spec;
 	private boolean sex;
-	private Data born;
+	private Date born;
 	private int num;
 	private int snum;
 	private byte[] photo;
@@ -36,10 +36,10 @@ public class Student {
 	public void setSex(boolean sex) {
 		this.sex = sex;
 	}
-	public Data getBorn() {
+	public Date getBorn() {
 		return born;
 	}
-	public void setBorn(Data born) {
+	public void setBorn(Date born) {
 		this.born = born;
 	}
 	public int getNum() {

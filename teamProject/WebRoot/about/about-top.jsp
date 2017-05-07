@@ -32,10 +32,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   					<img style="margin-top:50px;" src="image/lib3.jpg"></img>
   					<p style="color:gray">湖南工业大学图书馆</p>
   					<ul style="margin-top:60px; color:gray; list-style:none; margin-left:-13px;">
-  						<li><span style="color:#FC5">中文名</span>&nbsp;湖南工业大学图书馆</li>
-  						<li><span style="color:#FC5">藏书</span>&nbsp;&nbsp;300多万册</li>
-  						<li><span style="color:#FC5">始建于</span>&nbsp;1979年</li>
-  						<li><span style="color:#FC5">面积</span>&nbsp;&nbsp;34500平方米</li>
+  						<li><span style="color:#CC6; font-weight:bold;">中文名</span>&nbsp;湖南工业大学图书馆</li>
+  						<li><span style="color:#CC6; font-weight:bold;">藏书</span>&nbsp;&nbsp;300多万册</li>
+  						<li><span style="color:#CC6; font-weight:bold;">始建于</span>&nbsp;1979年</li>
+  						<li><span style="color:#CC6; font-weight:bold;">面积</span>&nbsp;&nbsp;34500平方米</li>
   					</ul>
   				</div>
   			</td>
@@ -49,9 +49,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  			<br><br>&nbsp;&nbsp;服务方面计划：提供文献外借、参考咨询、代查代检、文献传递、馆际互借、文献复制、书目查询、新书荐购、读者信息查询、新书通报、网上书刊预约、催还和续借、网络数据库检索及全文下载、光盘数据库检索、虚拟咨询与答疑、网上视频点播和网上报告厅播放等多项服务。</blockquote>
 		  			
 		  			<p style="font-size:20px; font-weight:bold; margin-left:40px; margin-top:50px;">开放时间</p>
-		  			<blockquote style="color:dark-gray; font-size:16px;">&nbsp;&nbsp;<a name="time" id="time">周一-周四：8:00-22:00</a>
-		  			<br>&nbsp;&nbsp;周五：&nbsp;&nbsp;闭馆。
-		  			<br>&nbsp;&nbsp;周六-周日：8:00-22:00</blockquote>
+		  			<blockquote style="color:dark-gray; font-size:16px;">&nbsp;&nbsp;<a name="time" id="time">周一——周四：8:00-22:00</a>
+		  			<br>&nbsp;&nbsp;周&nbsp;&nbsp;&nbsp;&nbsp;五：闭馆。
+		  			<br>&nbsp;&nbsp;周六——周日：8:00-22:00</blockquote>
 	  			</div>
   			</td>
   		</tr>

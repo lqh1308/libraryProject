@@ -14,6 +14,13 @@ public class Pager {
 		this.pageNow = pageNow;
 		this.totalSize = totalSize;
 	}
+	public void setPageNow(int pageNow){
+		this.pageNow = pageNow;
+	}
+	
+	public void setTotalSize(int totalSize){
+		this.totalSize = totalSize;
+	}
 	
 	public int getPageNow() {
 		return pageNow;
@@ -68,7 +75,7 @@ public class Pager {
 		this.hasNext = hasNext;
 	}
 	public boolean isHasLast() {
-		if(pageNow == this.getPageSize()){
+		if(pageNow == this.getTotalSize()){
 			return false;
 		}else{
 			return true;

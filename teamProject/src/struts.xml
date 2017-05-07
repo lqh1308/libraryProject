@@ -11,7 +11,7 @@
 	
 	<!-- 查询已经借阅的书籍 -->
 	<action name="selectBook" class="com.lqh.action.ActionLend" method="selectAllLend">
-		<result name="SUCCESS">/lend/lend.jsp</result>
+		<result name="success">/lend/lend.jsp</result>
 	</action>
 </package>
 
