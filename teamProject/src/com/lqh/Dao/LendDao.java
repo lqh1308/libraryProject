@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.lqh.DB.DBConn;
 import com.lqh.model.Book;
 import com.lqh.model.Lend;
@@ -31,7 +30,6 @@ public class LendDao {
 				lend.setPrice(rs.getFloat(5));
 				lend.setLendTime(rs.getDate(6));
 			//	System.out.println(rs.getDate(6));
-				
 				list.add(lend);
 			}
 			return list;
@@ -63,6 +61,7 @@ public class LendDao {
 		}
 	}
 	
+	
 	public Lend selectByBookId(String bookId){
 		try{
 			conn = DBConn.getConn();
@@ -87,6 +86,7 @@ public class LendDao {
 		}
 	}
 	
+	
 	public boolean addLend(Lend lend){
 		try{
 			conn = DBConn.getConn();
@@ -104,7 +104,6 @@ public class LendDao {
 			DBConn.closeConn();
 		}
 	}
-	
 	
 	public boolean updateBook(Book book){
 		try{
