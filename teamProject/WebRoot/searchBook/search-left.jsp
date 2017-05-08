@@ -24,8 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	<s:form action="selectBook" method="post" theme="simple">
-  	<table style="margin-top:-295px;">
+  	<s:form action="searchBook" method="post" theme="simple">
+  	<table style="margin-top:-280px;">
   		<tr>
   			<td style="height:40px; width:300px; text-align:center; margin-top:30px; background:#DDD; font-weight:bold;">查询界面</td>
   		</tr>
@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</tr>
   		<tr>
   			<td style="height:30px; width:300px; text-align:left; margin-top:60px; background:#CCC">
-  			借书证号：<s:textfield name="lend.readerId" size="12" style="margin-left:20px;"/><s:submit value="查询"/>
+  			图书ISBN：<s:textfield name="book.ISBN" size="12" style="margin-left:20px;"/><s:submit value="查询"/>
   			</td>
   		</tr>
   	</table>

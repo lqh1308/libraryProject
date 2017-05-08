@@ -13,6 +13,12 @@
 	<action name="selectBook" class="com.lqh.action.ActionLend" method="selectAllLend">
 		<result name="success">/lend/lend.jsp</result>
 	</action>
+	
+	
+	<!-- 查询图书 -->
+	<action name="searchBook" class="com.lqh.action.ActionSearch" method="searchBook">
+		<result name="success">/searchBook/search.jsp</result>
+	</action>
 </package>
 
 </struts>    

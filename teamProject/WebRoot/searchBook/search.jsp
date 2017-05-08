@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib prefix="s" uri="/struts-tags" %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -28,9 +29,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/head.jsp"></jsp:include></td>
 	  		</tr>
 	  		<tr>
-	  			<td height="600px" width="25%" bgcolor="#EEE">
+	  			<td height="590px" width="25%" bgcolor="#EEE" rowspan="3" style="padding-left:10px;">
+	  			<jsp:include page="/searchBook/search-left.jsp"></jsp:include>
 	  			</td>
-	  			<td height="600px" width="75%" bgcolor="#EEE"></td>
+	  			<td height="20px" width="75%" bgcolor="#EEE"></td>
+	  		</tr>
+	  		<tr align="center">
+	  			<td height="540px" width="75%" bgcolor="#EEE" valign="top" >
+	  				<jsp:include page="/searchBook/showBookInfo.jsp"></jsp:include>
+	  			</td>
+	  		</tr>
+	  		<tr align="center">
+	  			<td width="75%" bgcolor="#EEE">
+	  				<font color="red"><s:property value="message"/></font>
+	  			</td>
 	  		</tr>
 	  		<tr>
 	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>
@@ -38,3 +50,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	</table>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+

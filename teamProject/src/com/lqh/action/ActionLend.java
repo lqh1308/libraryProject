@@ -19,6 +19,7 @@ public class ActionLend extends ActionSupport{
 	private Lend lend;
 	private String message;
 	
+	
 	LendDao lendDao = new LendDao();              
 	public String selectAllLend(){ 								//查看所借书籍；
 		if(lend.getReaderId()==null || lend.getReaderId().equals("")){

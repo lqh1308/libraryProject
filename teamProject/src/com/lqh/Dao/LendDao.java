@@ -112,6 +112,7 @@ public class LendDao {
 					"price=?,cnum=?,snum=?,summary=?,photo=? where ISBN = ?");
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getAuthor());
+			
 			pstmt.setString(3, book.getPublisher());
 			pstmt.setFloat(4, book.getPrice());
 			pstmt.setInt(5, book.getCnum());
