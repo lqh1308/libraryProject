@@ -19,37 +19,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
+
+	<script>
+		window.onload(){
+			showMes(book.bookName);
+		}
+		
+		function showMes(mes){
+			alert(mes);
+		};
+	</script>
 	-->
 
+	<style type="text/css">
+		tr{
+			height:50px;
+			padding-left:-80px;
+		}
+		span{
+			font-size:17px;
+			font-weight:bold;
+			color:#666;
+		}
+		input{
+			height:30px;
+			width:150px;
+			background-color:#EEE;
+			color:#444;
+			font-size:14px;
+		}
+	</style>
   </head>
   
   <body>
   	<table style="border:solid 1px #BBB; align:center; width:900px; cellpadding:10px; cellspacing:5px; background:#DDD;">
   		<tr style="background:#EEE; text-align:left;">
-  			<td style="font-size:17px; font-weight:bold;">图书信息</td>
+  			<td style="font-size:20px; font-weight:bold;">图书信息</td>
   		</tr>
-  	<!--  	<s:set name="book" value="#request.book">-->
-  		<s:iterator value="#request.book" id="book">
-  		<tr>
-  			<td>书名：<input type="text" value="<s:property value="#book.bookName"/>" readonly/></td>
-  		</tr>
-  		<tr>
-  			<td>作者：<input type="text" value="<s:property value="#book.author"/>" readonly/></td>
+  		<tr >
+  			<td width="40%" bgcolor="#EEE" rowspan="7" style="padding-left:10px;"><div style="width:200px; height:220px; margin-left:65px;"><s:property value="#request.book.photo"/></div></td>
+  			<td><span>书&nbsp;名：</span><input type="text" value="<s:property value="#request.book.bookName"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td>出版社：<input type="text" value="<s:property value="#book.publisher"/>" readonly/></td>
+  			<td><span>作&nbsp;者：</span><input type="text" value="<s:property value="#request.book.author"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td>价格：<input type="text" value="<s:property value="#book.price"/>" readonly/></td>
+  			<td><span>出版社：</span><input type="text" value="<s:property value="#request.book.publisher"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td>复本量：<input type="text" value="<s:property value="#book.cnum"/>" readonly/></td>
+  			<td><span>价&nbsp;格：</span><input type="text" value="<s:property value="#request.book.price"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td>库存量：<input type="text" value="<s:property value="#book.snum"/>" readonly/></td>
+  			<td><span>复本量：</span><input type="text" value="<s:property value="#request.book.cnum"/>" readonly/></td>
   		</tr>
-  		</s:iterator>
-  	<!--  	</s:set> -->
+  		<tr>
+  			<td><span>库存量：</span><input type="text" value="<s:property value="#request.book.snum"/>" readonly/></td>
+  		</tr>
+  		<tr>
+  			<td style="margin-bottom"><span>简&nbsp;介：</span><input type="text" value="<s:property value="#request.book.summary"/>" readonly/></td>
+  		</tr>
   	</table>
   </body>
 </html>

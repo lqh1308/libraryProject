@@ -20,7 +20,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<style type="text/css">
+		submit{
+			height:20px;
+			width:30px;
+		}
+	</style>
+	
   </head>
   
   <body>
@@ -34,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</tr>
   		<tr>
   			<td style="height:30px; width:300px; text-align:left; margin-top:60px; background:#CCC">
-  			图书ISBN：<s:textfield name="book.ISBN" size="12" style="margin-left:20px;"/><s:submit value="查询"/>
+  			图书ISBN：<s:textfield name="book.ISBN" size="12" style="margin-left:20px; width:90px;"/><s:submit value="查询" style=" margin-left:20px; width:60px;"/>
   			</td>
   		</tr>
   	</table>

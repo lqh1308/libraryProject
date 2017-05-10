@@ -34,13 +34,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		</tr>
 	  		<tr style="font-size:20px; font-weight:bold; color:#666;">
 	  			<td style="width:50px;"></td>
-	  			<td><span onclick="location.href='searchBook/search.jsp'" style='cursor:hand'>图书查询</span></td>
-	  			<td><span onclick="location.href='lend/lend.jsp'" style='cursor:hand'>借书查询</span></td>
-	  			<td><span onclick="location.href='lendCheck/lendCheck.jsp'" style='cursor:hand'>借书</span></td>
-	  			<td><span onclick="location.href='returnBook/return.jsp'" style='cursor:hand'>还书</span></td>
-	  			<td><span onclick="location.href='readerManage/reader.jsp'" style='cursor:hand'>读者管理</span></td>
-	  			<td><span onclick="location.href='bookManage/book.jsp'" style='cursor:hand'>图书管理</span></td>
-	  			<td style="padding-right:70px;"><span onclick="location.href='about/about.jsp'" style='cursor:hand'>关于</span></td>
+	  			<td><span onclick="location.href='searchBook/search.jsp'" style='cursor:hand; font-size:20px;'>图书查询</span></td>
+	  			<td><span onclick="location.href='lend/lend.jsp'" style='cursor:hand; font-size:20px;'>借书查询</span></td>
+	  			<td><span onclick="location.href='lendCheck/lendCheck.jsp'" style='cursor:hand; font-size:20px;'>借书</span></td>
+	  			<td><span onclick="location.href='returnBook/return.jsp'" style='cursor:hand; font-size:20px;'>还书</span></td>
+	  			<td><span onclick="location.href='readerManage/reader.jsp'" style='cursor:hand; font-size:20px;'>读者管理</span></td>
+	  			<td><span onclick="location.href='bookManage/book.jsp'" style='cursor:hand; font-size:20px;'>图书管理</span></td>
+	  			<td style="padding-right:70px;"><span onclick="location.href='about/about.jsp'" style='cursor:hand; font-size:20px;'>关于</span></td>
 	  		</tr>
 	  	</table>
   	</div>
