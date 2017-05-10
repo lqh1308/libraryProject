@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.bookName"/></td>
   				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.publisher"/></td>
   				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.price"/></td>
-  				<td style="height:50px; border:1px solid #AAA;"><s:date name="#lend.lendTime" format="yyyy-MM-dd"/></td>
+  				<td style="height:50px; border:1px solid #AAA;"><s:property value="#lend.lendTime"/></td>
   			</tr>
   		</s:iterator>
   	</table>
