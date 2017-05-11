@@ -6,6 +6,7 @@
 	<action name="login" class="com.lqh.action.ActionTest1">
 		<result name="admin">/login/admin.jsp</result>
 		<result name="student">/login/student.jsp</result>
+		<result name="input">/login/login.jsp</result>
 		<result name="error">/welcome/error.jsp</result>
 	</action>
 	
@@ -19,6 +20,22 @@
 	<action name="searchBook" class="com.lqh.action.ActionSearch" method="searchBook">
 		<result name="success">/searchBook/search.jsp</result>
 	</action>
+	
+	<!-- 图书管理 -->
+	<action name="book" class="com.lqh.action.ActionBook">
+		<result name="success">/bookManage/book.jsp</result>
+		<result name="input">/bookManage/book.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="validation.excludeMethods">*</param>
+			<param name="validation.includeMethods">addBook,updateBook</param>
+		</interceptor-ref>
+	</action>
 </package>
+<!-- 国际化配置 -->
+<constant name="struts.i18n.encoding" value="utf-8"></constant>
+<!-- 文件上传临时文件夹 -->
+<constant name="struts.multipart.saveDir" value="/tmp"></constant>
+<!-- 支持动态的方法配置 -->
+<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
 
 </struts>    

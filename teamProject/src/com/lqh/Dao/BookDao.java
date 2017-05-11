@@ -3,8 +3,6 @@ package com.lqh.Dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.lqh.DB.DBConn;
 import com.lqh.model.Book;
@@ -37,6 +35,68 @@ public class BookDao {
 				return null;
 			}finally{
 				DBConn.closeConn();
+		}
+	}
+	
+	public boolean addBook(Book book){
+		try{
+			conn=DBConn.getConn();
+			PreparedStatement pstmt=conn.prepareStatement("insert into book values(?,?,?,?,?,?,?,?,?)");
+			pstmt.setString(1, book.getISBN());
+			pstmt.setString(2, book.getBookName());
+			pstmt.setString(3, book.getAuthor());
+			pstmt.setString(4, book.getPublisher());
+			pstmt.setFloat(5, book.getPrice());
+			pstmt.setInt(6, book.getCnum());
+			pstmt.setInt(7, book.getSnum());
+			pstmt.setString(8, book.getSummary());
+			pstmt.setBytes(9, book.getPhoto());
+			pstmt.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			DBConn.closeConn();
+		}
+	}
+
+	public boolean updateBook(Book book) {
+		try{
+			conn=DBConn.getConn();
+			PreparedStatement pstmt=conn.prepareStatement("update book set bookName=?," +
+				"author=?,publisher=?,price=?,cnum=?,snum=?,summary=?,photo=? where ISBN=?");
+			pstmt.setString(1, book.getBookName());
+			pstmt.setString(2, book.getAuthor());
+			pstmt.setString(3, book.getPublisher());
+			pstmt.setFloat(4, book.getPrice());
+			pstmt.setInt(5, book.getCnum());
+			pstmt.setInt(6, book.getSnum());
+			pstmt.setString(7, book.getSummary());
+			pstmt.setBytes(8, book.getPhoto());
+			pstmt.setString(9, book.getISBN());
+			pstmt.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			DBConn.closeConn();
+		}
+	}
+
+	public boolean deleteBook(Book b) {
+		try {
+			conn = DBConn.getConn();
+			PreparedStatement pstmt=conn.prepareStatement("delete from book where ISBN=?");
+			pstmt.setString(1, b.getISBN());
+			pstmt.execute();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			DBConn.closeConn();
 		}
 	}
 }

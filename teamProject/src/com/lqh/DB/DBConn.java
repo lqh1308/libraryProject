@@ -9,7 +9,7 @@ public class DBConn {
 	public static Connection getConn(){
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/lib","root","123456");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/javaee","root","mysql");
 		//	System.out.println("连接成功！");
 			return conn;
 		}catch(Exception e){

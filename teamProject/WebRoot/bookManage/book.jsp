@@ -134,6 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<table style="border:solid 1px #BBB; align:center; width:900px; height:500px; cellpadding:10px; cellspacing:5px; background:#DDD;">
 							  		<tr >
 							  			<td width="40%" bgcolor="#EEE" rowspan="10" style="padding-left:10px;"><div style="width:200px; height:220px; margin-left:65px;">
+							  			<img alt="上传的图" src='<s:property value="photoAddr"/>'>
 							  			<s:file name="photo" accept="image/*"/></div></td>
 							  			<td align="center">
 											<font color="red"><s:property value="message"/></font>
@@ -146,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</tr>
 							  		<tr>
 							  			<td><span>ISBN&nbsp;：</span><input type="text" value="<s:property value="#onebook.ISBN"/>" 
-							  			name="onebook.ISBN" readonly/></td>
+							  			name="onebook.ISBN"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>书&nbsp;名：</span><input type="text" value="<s:property value="#onebook.bookName"/>" 
