@@ -1,5 +1,6 @@
 package com.lqh.model;
 
+@SuppressWarnings("unused")
 public class Pager {
 	private int pageNow;
 	private int pageSize = 8;

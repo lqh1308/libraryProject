@@ -1,9 +1,7 @@
 package com.lqh.action;
 
 import java.util.List;
-import java.util.Map;
 
-import com.lqh.Dao.BookDao;
 import com.lqh.Dao.LendDao;
 import com.lqh.Dao.StudentDao;
 import com.lqh.model.Lend;
@@ -29,9 +27,9 @@ public class ActionLend extends ActionSupport{
 			this.setMessage("不存在该学生");
 			return "success";
 		}
-		List list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
+		List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
 		Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
-		Map<String, Object> request = (Map)ActionContext.getContext().get("request");
+		ActionContext request = (ActionContext)ActionContext.getContext();
 		request.put("list", list);
 		request.put("page", page);
 		request.put("readerId", lend.getReaderId());

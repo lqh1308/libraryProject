@@ -11,9 +11,9 @@ import com.lqh.model.Lend;
 
 public class LendDao {
 	Connection conn;
-	public List selectLend(String readerId, int pageNow, int pageSize){
+	public List<Lend> selectLend(String readerId, int pageNow, int pageSize){
 		try{
-			List list = new ArrayList();
+			List<Lend> list = new ArrayList<Lend>();
 			conn = DBConn.getConn();
 			PreparedStatement pstmt = conn.prepareStatement("select * from (select l.bookId, l.ISBN, b.bookName, b.publisher, b.price, l.ltime " + 
 					"from lend as l, book as b " +

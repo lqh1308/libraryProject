@@ -2,7 +2,6 @@ package com.lqh.action;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.lqh.Dao.BookDao;
 import com.lqh.model.Book;
@@ -22,13 +21,13 @@ public class ActionSearch extends ActionSupport{
 			this.message = "不存在该图书";
 			return "success";
 		}
-		List list = new ArrayList();
+		List<Book> list = new ArrayList<Book>();
 		list.add(new BookDao().bookSelect(book.getISBN()));
 		Book bookS = new Book();
 		bookS = (Book) list.get(0);										//获得图书的信息
 	//	System.out.println(bookS.getAuthor());
 		
-		Map request = (Map)ActionContext.getContext().get("request");
+		ActionContext request = (ActionContext)ActionContext.getContext().get("request");
 		request.put("book", bookS);
 		Book book1 = (Book) request.get("book");
 		System.out.println(book1.getAuthor());
