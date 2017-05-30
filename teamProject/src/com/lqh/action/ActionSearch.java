@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lqh.Dao.BookDao;
 import com.lqh.model.Book;
+import com.lqh.util.PhotoTools;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,12 +26,10 @@ public class ActionSearch extends ActionSupport{
 		list.add(new BookDao().bookSelect(book.getISBN()));
 		Book bookS = new Book();
 		bookS = (Book) list.get(0);										//获得图书的信息
+		bookS.setPhoto_url(PhotoTools.getPhotoUrl(bookS));
 	//	System.out.println(bookS.getAuthor());
 		
-		ActionContext request = (ActionContext)ActionContext.getContext().get("request");
-		request.put("book", bookS);
-		Book book1 = (Book) request.get("book");
-		System.out.println(book1.getAuthor());
+		ActionContext.getContext().put("book", bookS);
 		
 //		this.message = "存在该书！";
 		return "success";

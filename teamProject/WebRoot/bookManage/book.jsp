@@ -147,34 +147,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									</tr>
 							  		<tr>
 							  			<td><span>ISBN&nbsp;：</span><input type="text" value="<s:property value="#onebook.ISBN"/>" 
-							  			name="onebook.ISBN"/></td>
+							  			name="book.ISBN"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>书&nbsp;名：</span><input type="text" value="<s:property value="#onebook.bookName"/>" 
-							  			name="onebook.bookName"/></td>
+							  			name="book.bookName"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>作&nbsp;者：</span><input type="text" value="<s:property value="#onebook.author"/>"
-							  			 name="onebook.author"/></td>
+							  			 name="book.author"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>出版社：</span><input type="text" value="<s:property value="#onebook.publisher"/>" 
-							  			name="onebook.publisher"/></td>
+							  			name="book.publisher"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>价&nbsp;格：</span><input type="text" value="<s:property value="#onebook.price"/>" 
-							  			name="onebook.price" onblur="check(this)"/></td>
+							  			name="book.price" onblur="check(this)"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>复本量：</span><input type="text" value="<s:property value="#onebook.cnum"/>" 
-							  			name="onebook.cnum" onblur="check(this)"/></td>
+							  			name="book.cnum" onblur="check(this)"/></td>
 							  		</tr>
 							  		<tr>
 							  			<td><span>库存量：</span><input type="text" value="<s:property value="#onebook.snum"/>" 
-							  			name="onebook.snum" onblur="check(this)" disabled/></td>
+							  			name="book.snum" onblur="check(this)" disabled/></td>
 							  		</tr>
 							  		<tr>
-							  			<td style="margin-bottom"><span>简&nbsp;&nbsp;介：</span><textarea name="onebook.summay"><s:property value="#onebook.ISBN"/></textarea></td>
+							  			<td style="margin-bottom"><span>简&nbsp;&nbsp;介：</span><textarea name="book.summay"><s:property value="#onebook.ISBN"/></textarea></td>
 							  		</tr>
 							  	</table>
 								</s:else>

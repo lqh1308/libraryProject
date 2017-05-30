@@ -11,6 +11,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.lqh.Dao.BookDao;
 import com.lqh.model.Book;
+import com.lqh.util.PhotoTools;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -42,13 +43,10 @@ public class ActionBook extends ActionSupport {
 		b.setSnum(book.getCnum());
 		b.setSummary(book.getSummary());
 		if(this.getPhoto()!=null){
-			FileInputStream fis=new FileInputStream(this.getPhoto());
-			byte[] buffer=new byte[fis.available()];
 			//保存到本地temp目录
-			savePhoto(photo, getFile());
-			fis.read(buffer);
-			b.setPhoto(buffer);
-			fis.close();
+			savePhoto(this.getPhoto(), PhotoTools.getFile(book));
+			//保存图片后缀
+			b.setPhotoType(photoFileName.substring(photoFileName.lastIndexOf('.')));
 		}
 		bookDao.addBook(b);
 		this.setMessage("添加成功！");
@@ -61,9 +59,10 @@ public class ActionBook extends ActionSupport {
 			this.setMessage("要删除的图书不存在,请检查ISBN号是否正确！");
 			return SUCCESS;
 		}
-		File old = checkFile();
+		File old = PhotoTools.checkFile(book.getISBN());
 		if(old != null) {
-			System.out.println("delete photo" + old.delete());			//删除文件
+			//删除文件
+			old.delete();			
 		}
 		bookDao.deleteBook(b);
 		this.setMessage("删除成功");
@@ -84,21 +83,17 @@ public class ActionBook extends ActionSupport {
 		b.setSnum(book.getSnum());
 		b.setSummary(book.getSummary());
 		if(this.getPhoto()!=null){
-			FileInputStream fis=new FileInputStream(this.getPhoto());
-			byte[] buffer=new byte[fis.available()];
-			File old = checkFile();
+			File old = PhotoTools.checkFile(book.getISBN());
 			if(old != null) {
 				old.deleteOnExit();			//有重复的isbn文件，删除之
 			}
-			savePhoto(getPhoto(), getFile());
-			fis.read(buffer);
-			b.setPhoto(buffer);
-			fis.close();
+			savePhoto(this.getPhoto(), PhotoTools.getFile(book));
 		}
 		bookDao.updateBook(b);
 		this.setMessage("修改成功！");
 		return SUCCESS;
 	}
+	
 	public String selectBook() throws Exception {
 		Book b=bookDao.bookSelect(book.getISBN());
 		if(b==null){
@@ -106,7 +101,7 @@ public class ActionBook extends ActionSupport {
 			return SUCCESS;
 		}
 		ActionContext.getContext().put("onebook", b);
-		ActionContext.getContext().put("photoAddr", getAddr());
+		ActionContext.getContext().put("photoAddr", PhotoTools.getPhotoUrl(b));
 		
 		return SUCCESS;
 	}
@@ -119,9 +114,6 @@ public class ActionBook extends ActionSupport {
 			fis = new FileInputStream(originFile);			//获取文件输入流，输入源为上传的photo
 			fos = new FileOutputStream(saveFile);			//获取文件输出流，输出源为temp目录下的对应保存对象的isbn号的图片格式文件
 			
-			/* 
-			 * 标准流输出格式
-			 */
 			byte[] buffer = new byte[1024];				
 			int len = 0;
 			while ((len = fis.read(buffer)) > 0) {
@@ -140,60 +132,6 @@ public class ActionBook extends ActionSupport {
 				e.printStackTrace();
 			}
 		}
-	}
-	
-	public File checkFile() {		//检查temp里面是否原本有这个ISBN的图片存在
-		@SuppressWarnings("deprecation")
-		File file = new File(ServletActionContext.getRequest().getRealPath("/temp"));	//获得temp目录
-		String[] subFileName = file.list();			//获取temp目录下子文件的文件名列表
-		for(String name : subFileName) {
-			String str = name.substring(0, name.lastIndexOf("."));		//截取.xxx之前的文件名（即isbn号）
-			if(str.equals(this.book.getISBN())) {
-				return new File(file.getPath() + "\\" + name);   //返回具体的文件
-			}
-		}
-		return null;
-	}
-	
-	public String checkType() {
-		@SuppressWarnings("deprecation")
-		File file = new File(ServletActionContext.getRequest().getRealPath("/temp"));	//获得temp目录
-		String[] subFileName = file.list();			//获取temp目录下子文件的文件名列表
-		for(String name : subFileName) {
-			String str = name.substring(0, name.lastIndexOf("."));		//截取.xxx之前的文件名（即isbn号）
-//			System.out.println("str : " + str + ", ISBN : " + book.getISBN() + ", result : " + name);
-			if(str.equals(this.book.getISBN())) {
-				return name;		//截取.xxx文件类型
-			}
-		}
-		return null;
-	}
-	
-	public String getType() {   //获取photo类型
-		System.out.println("photoFileName == null ? " + (photoFileName == null));
-		if(photoFileName != null)
-			return photoFileName.substring(photoFileName.lastIndexOf("."));
-		else {
-			return "";
-		}
-	}
-	
-	@SuppressWarnings("deprecation")
-	public File getFile() {     //获取temp文件
-		return new File(ServletActionContext.getRequest().getRealPath("") + 
-				"\\temp\\" + getBook().getISBN() + getType());
-	}
-	
-	public String getAddr() {
-		HttpServletRequest req = ServletActionContext.getRequest();
-		String scheme = req.getScheme();
-		String basePath = req.getServerName();
-		int port = req.getServerPort();
-		String contextPath = req.getContextPath();
-		String result = scheme + "://" + basePath + ":" + port + contextPath + "/temp/" + checkType();
-//		System.out.println("checkType()" + checkType());
-//		System.out.println("photo url:" + result);
-		return result;
 	}
 	
 	public String getMessage() {

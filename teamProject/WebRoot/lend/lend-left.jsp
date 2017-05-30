@@ -25,19 +25,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<s:form action="selectBook" method="post" theme="simple">
-  	<table style="margin-top:-295px;">
-  		<tr>
-  			<td style="height:40px; width:300px; text-align:center; margin-top:30px; background:#DDD; font-weight:bold;">查询界面</td>
-  		</tr>
-  		<tr>
-  			<td height="80px;" background="#FFF"></td>
-  		</tr>
-  		<tr>
-  			<td style="height:30px; width:300px; text-align:left; margin-top:60px; background:#CCC">
-  			借书证号：<s:textfield name="lend.readerId" size="12" style="margin-left:20px;"/><s:submit value="查询"/>
-  			</td>
-  		</tr>
-  	</table>
+	  	<table style="margin-top:-295px;">
+	  		<tr>
+	  			<td style="height:40px; width:300px; text-align:center; margin-top:30px; background:#DDD; font-weight:bold;">查询界面</td>
+	  		</tr>
+	  		<tr>
+	  			<td height="80px;" background="#FFF"></td>
+	  		</tr>
+	  		<tr>
+	  			<td style="height:30px; width:300px; text-align:left; margin-top:60px; background:#CCC">
+	  			借书证号：<s:textfield name="lend.readerId" size="12" style="margin-left:20px;"/><s:submit value="查询"/>
+	  			</td>
+	  		</tr>
+	  	</table>
   	</s:form>
   </body>
 </html>

@@ -25,7 +25,7 @@ public class BookDao {
 				book.setCnum(rs.getInt(6));
 				book.setSnum(rs.getInt(7));
 				book.setSummary(rs.getString(8));
-				book.setPhoto(rs.getBytes(9));
+				book.setPhotoType(rs.getString(9));
 				return book;
 			}else{
 				return null;
@@ -41,7 +41,10 @@ public class BookDao {
 	public boolean addBook(Book book){
 		try{
 			conn=DBConn.getConn();
-			PreparedStatement pstmt=conn.prepareStatement("insert into book values(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt=conn.prepareStatement(
+					"insert into " +
+					"book(ISBN, bookName, author, publisher, price, cnum, snum, summary, photoType) " +
+					"values(?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1, book.getISBN());
 			pstmt.setString(2, book.getBookName());
 			pstmt.setString(3, book.getAuthor());
@@ -50,7 +53,7 @@ public class BookDao {
 			pstmt.setInt(6, book.getCnum());
 			pstmt.setInt(7, book.getSnum());
 			pstmt.setString(8, book.getSummary());
-			pstmt.setBytes(9, book.getPhoto());
+			pstmt.setString(9, book.getPhotoType());
 			pstmt.execute();
 			return true;
 		}catch(Exception e){
@@ -65,7 +68,7 @@ public class BookDao {
 		try{
 			conn=DBConn.getConn();
 			PreparedStatement pstmt=conn.prepareStatement("update book set bookName=?," +
-				"author=?,publisher=?,price=?,cnum=?,snum=?,summary=?,photo=? where ISBN=?");
+				"author=?,publisher=?,price=?,cnum=?,snum=?,summary=?,photoType=? where ISBN=?");
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getAuthor());
 			pstmt.setString(3, book.getPublisher());
@@ -73,7 +76,7 @@ public class BookDao {
 			pstmt.setInt(5, book.getCnum());
 			pstmt.setInt(6, book.getSnum());
 			pstmt.setString(7, book.getSummary());
-			pstmt.setBytes(8, book.getPhoto());
+			pstmt.setString(8, book.getPhotoType());
 			pstmt.setString(9, book.getISBN());
 			pstmt.execute();
 			return true;

@@ -57,26 +57,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   			<td style="font-size:20px; font-weight:bold;">图书信息</td>
   		</tr>
   		<tr >
-  			<td width="40%" bgcolor="#EEE" rowspan="7" style="padding-left:10px;"><div style="width:200px; height:220px; margin-left:65px;"><s:property value="#request.book.photo"/></div></td>
-  			<td><span>书&nbsp;名：</span><input type="text" value="<s:property value="#request.book.bookName"/>" readonly/></td>
+  			<td width="40%" bgcolor="#EEE" rowspan="7" style="padding-left:10px;"><div><img alt="书本封面" src="<s:property value="#book.photo_url"/>" style="width:200px; height:220px;"></div></td>
+  			<td><span>书&nbsp;名：</span><input type="text" value="<s:property value="#book.bookName"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td><span>作&nbsp;者：</span><input type="text" value="<s:property value="#request.book.author"/>" readonly/></td>
+  			<td><span>作&nbsp;者：</span><input type="text" value="<s:property value="#book.author"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td><span>出版社：</span><input type="text" value="<s:property value="#request.book.publisher"/>" readonly/></td>
+  			<td><span>出版社：</span><input type="text" value="<s:property value="#book.publisher"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td><span>价&nbsp;格：</span><input type="text" value="<s:property value="#request.book.price"/>" readonly/></td>
+  			<td><span>价&nbsp;格：</span><input type="text" value="<s:property value="#book.price"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td><span>复本量：</span><input type="text" value="<s:property value="#request.book.cnum"/>" readonly/></td>
+  			<td><span>复本量：</span><input type="text" value="<s:property value="#book.cnum"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td><span>库存量：</span><input type="text" value="<s:property value="#request.book.snum"/>" readonly/></td>
+  			<td><span>库存量：</span><input type="text" value="<s:property value="#book.snum"/>" readonly/></td>
   		</tr>
   		<tr>
-  			<td style="margin-bottom"><span>简&nbsp;介：</span><input type="text" value="<s:property value="#request.book.summary"/>" readonly/></td>
+  			<td style="margin-bottom"><span>简&nbsp;介：</span><input type="text" value="<s:property value="#book.summary"/>" readonly/></td>
   		</tr>
   	</table>
   </body>

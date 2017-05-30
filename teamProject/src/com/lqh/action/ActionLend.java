@@ -17,17 +17,22 @@ public class ActionLend extends ActionSupport{
 	private Lend lend;
 	private String message;
 	
+	LendDao lendDao = new LendDao();
 	
-	LendDao lendDao = new LendDao();              
-	public String selectAllLend(){ 								//查看所借书籍；
-		if(lend.getReaderId()==null || lend.getReaderId().equals("")){
+	//查看所借书籍；
+	public String selectAllLend(){ 		
+//		System.out.println(lend);
+		if(lend.getReaderId() == null || lend.getReaderId().equals("")){
 			this.setMessage("请输入借书证号！");
+			System.out.println("ActionLend.selectAllLend() 第一个判断为空");
 			return "success";
 		}else if(new StudentDao().selectByReaderId(lend.getReaderId()) == null){
 			this.setMessage("不存在该学生");
+			System.out.println("ActionLend.selectAllLend() 第二个判断为空");
 			return "success";
 		}
 		List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
+		System.out.println("pageNow : " + pageNow);
 		Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
 		ActionContext request = (ActionContext)ActionContext.getContext();
 		request.put("list", list);

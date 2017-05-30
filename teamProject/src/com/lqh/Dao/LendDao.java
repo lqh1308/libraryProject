@@ -15,10 +15,12 @@ public class LendDao {
 		try{
 			List<Lend> list = new ArrayList<Lend>();
 			conn = DBConn.getConn();
-			PreparedStatement pstmt = conn.prepareStatement("select * from (select l.bookId, l.ISBN, b.bookName, b.publisher, b.price, l.ltime " + 
-					"from lend as l, book as b " +
-					"where readerId=? and b.ISBN=l.ISBN and l.bookId " +
-					"not in (select temp.bookId from (select bookId from lend LIMIT  0 ," + pageSize*(pageNow-1) + ") as temp) LIMIT 0, " + pageSize + ") as  temp2");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"select bookId, ISBN, bookName, publisher, price, ltime " +
+					"from " +
+						"(select l.bookId, l.ISBN, b.bookName, b.publisher, b.price, l.ltime " + 
+						"from lend as l, book as b " +
+						"where readerId=? and b.ISBN=l.ISBN LIMIT " + pageSize * (pageNow - 1) + ", " + pageSize + ") as  temp2");
 			pstmt.setString(1, readerId);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -29,7 +31,6 @@ public class LendDao {
 				lend.setPublisher(rs.getString(4));
 				lend.setPrice(rs.getFloat(5));
 				lend.setLendTime(rs.getDate(6));
-			//	System.out.println(rs.getDate(6));
 				list.add(lend);
 			}
 			return list;
@@ -90,7 +91,7 @@ public class LendDao {
 	public boolean addLend(Lend lend){
 		try{
 			conn = DBConn.getConn();
-			PreparedStatement pstmt = conn.prepareStatement("insert into lend value(?,?,?,?");
+			PreparedStatement pstmt = conn.prepareStatement("insert into(bookId,readerId,isbn,lendTime) lend value(?,?,?,?)");
 			pstmt.setString(1, lend.getBookId());
 			pstmt.setString(2, lend.getReaderId());
 			pstmt.setString(3, lend.getISBN());
@@ -109,7 +110,7 @@ public class LendDao {
 		try{
 			conn = DBConn.getConn();
 			PreparedStatement pstmt = conn.prepareStatement("update book set bookName=?,author=?,publisher=?," +
-					"price=?,cnum=?,snum=?,summary=?,photo=? where ISBN = ?");
+					"price=?,cnum=?,snum=?,summary=?,photoType=? where ISBN = ?");
 			pstmt.setString(1, book.getBookName());
 			pstmt.setString(2, book.getAuthor());
 			
@@ -118,7 +119,7 @@ public class LendDao {
 			pstmt.setInt(5, book.getCnum());
 			pstmt.setInt(6, book.getSnum());
 			pstmt.setString(7, book.getSummary());
-			pstmt.setBytes(8, book.getPhoto());
+			pstmt.setString(8, book.getPhotoType());
 			pstmt.setString(9, book.getISBN());
 			pstmt.execute();
 			return true;

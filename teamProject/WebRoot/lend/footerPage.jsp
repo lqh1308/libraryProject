@@ -27,20 +27,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<table>
   		<tr>
   			<td align="right">
-  				<a href="selectBook.action?pageNow = 1 & lend.readerId=<s:property value="#request.readerId"/>">首页</a>
-  				<s:if test = "#page.isHasPre">
-  					<a href="selectBook.action?pageNow =<s:property value="page.pageNow-1"/> & lend.readerId=<s:property value="#request.readerId"/>">上一页</a>
+  				<a href="selectBook.action?pageNow=1&lend.readerId=<s:property value="#request.readerId"/>">首页</a>
+  				<s:if test = "#request.page.isHasPre()">
+  					<a href="selectBook.action?pageNow=<s:property value="#request.page.pageNow-1"/>&lend.readerId=<s:property value="#request.readerId"/>">上一页</a>
   				</s:if>
   				<s:else>
-  					<a href="selectBook.action?pageNow = 1 & lend.readerId = <s:property value="#request.readerId"/>">上一页</a>
+  					<a href="selectBook.action?pageNow=1&lend.readerId=<s:property value="#request.readerId"/>">上一页</a>
   				</s:else>
-  				<s:if test = "page.isHasNext">
-  					<a href="selectBook.action?pageNow = <s:property value="#page.pageNow+1"/> & lend.readerId=<s:property value="#request.readerId"/>">下一页</a>
+  				<s:if test = "#request.page.isHasNext()">
+  					<a href="selectBook.action?pageNow=<s:property value="#request.page.pageNow+1"/>&lend.readerId=<s:property value="#request.readerId"/>">下一页</a>
   				</s:if>
   				<s:else>
-  					<a href="selectBook.action?pageNow = <s:property value="#page.totalPage"/>&lend.readerId=<s:property value="#request.readerId"/>">下一页</a>
+  					<a href="selectBook.action?pageNow=<s:property value="#request.page.totalPage"/>&lend.readerId=<s:property value="#request.readerId"/>">下一页</a>
   				</s:else>
-  				<a href="selectBook.action?pageNow =<s:property value="#page.totalPage"/> & lend.readerId=<s:property value="#request.readerId"/>">尾页</a>
+  				<a href="selectBook.action?pageNow=<s:property value="#request.page.totalPage"/>&lend.readerId=<s:property value="#request.readerId"/>">尾页</a>
   			</td>
   		</tr>
   	</table>
