@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'lendCheck.jsp' starting page</title>
+    <title>图书管理系统</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -28,10 +28,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		<tr>
 	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/head.jsp"></jsp:include></td>
 	  		</tr>
+	  		<tr style="align:center;" >
+    			<td style="color:red"><s:property value="message"/></td>
+    		</tr>
 	  		<tr>
-	  			<td height="600px" width="25%" bgcolor="#EEE">
+	  			<td height="600px" width="30%" bgcolor="#EEE" rowspan="2">
+	  				<jsp:include page="/lendCheck/lendCheck-left.jsp"></jsp:include>
 	  			</td>
-	  			<td height="600px" width="75%" bgcolor="#EEE"></td>
+	  			<td height="600px" width="70%" bgcolor="#EEE" valign="top">
+	  				<jsp:include page="/lendCheck/lendCheckInfo.jsp"></jsp:include>
+	  			</td>
+	  		</tr>
+	  		<tr style="align:center;" >
+	  			<td align="right" height="30px" width="75%" bgcolor="#EEE">
+	  				<jsp:include page="/lendCheck/footerPage.jsp"/>
+	  			</td>
 	  		</tr>
 	  		<tr>
 	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>

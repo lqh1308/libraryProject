@@ -38,7 +38,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<tr>
 	  				<td>&nbsp;&nbsp;&nbsp;&nbsp;
 	  					<s:submit name="submit" value="登录"/>&nbsp;
-	  					<s:reset name="reset" value="重置"/>
+	  					<s:reset name="reset" value="重置"/> &nbsp;
+	  					<s:submit value="注册" method="register"/>
+	  				</td>
+	  			</tr>
+	  			<tr>
+	  				<td>
+	  					<s:fielderror></s:fielderror>
 	  				</td>
 	  			</tr>
 	  		</table>

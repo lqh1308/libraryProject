@@ -1,16 +1,31 @@
 package com.lqh.model;
 
-import java.util.Date;
+import java.sql.Date;
+
 
 public class Student {
 	private String readerId;
 	private String name;
 	private String spec;
-	private boolean sex;
+	private String sex;
 	private Date born;
 	private int num;
-	private int snum;
-	private byte[] photo;
+	
+	@Override
+	public String toString() {
+		return "readerId:" + readerId + ", name:" + name + 
+				", spec:" + spec + ", sex:" + sex + ", born:" + born + 
+				", num:" + num;
+	}
+	
+	public void setInit() {
+		readerId = "";
+		name = "";
+		spec = "";
+		sex = "ÄÐ";
+		born = null;
+		num = 0;
+	}
 	
 	public String getReaderId() {
 		return readerId;
@@ -30,12 +45,6 @@ public class Student {
 	public void setSpec(String spec) {
 		this.spec = spec;
 	}
-	public boolean isSex() {
-		return sex;
-	}
-	public void setSex(boolean sex) {
-		this.sex = sex;
-	}
 	public Date getBorn() {
 		return born;
 	}
@@ -48,17 +57,13 @@ public class Student {
 	public void setNum(int num) {
 		this.num = num;
 	}
-	public int getSnum() {
-		return snum;
+
+	public String getSex() {
+		return sex;
 	}
-	public void setSnum(int snum) {
-		this.snum = snum;
-	}
-	public byte[] getPhoto() {
-		return photo;
-	}
-	public void setPhoto(byte[] photo) {
-		this.photo = photo;
+
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 	

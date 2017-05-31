@@ -5,10 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-
 import com.lqh.Dao.BookDao;
 import com.lqh.model.Book;
 import com.lqh.util.PhotoTools;

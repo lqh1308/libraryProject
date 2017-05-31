@@ -1,11 +1,16 @@
 package com.lqh.action;
 
+import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
+import com.lqh.Dao.BookDao;
 import com.lqh.Dao.LendDao;
 import com.lqh.Dao.StudentDao;
+import com.lqh.model.Book;
 import com.lqh.model.Lend;
 import com.lqh.model.Pager;
+import com.lqh.model.Student;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -42,43 +47,100 @@ public class ActionLend extends ActionSupport{
 	}
 	
 
-//	public String lendBook() throws Exception{                       //在图书馆查询书籍；
-//		BookDao bookDao = new BookDao();
-//		Map request = (Map) ActionContext.getContext().get("request");
-//		
-//		if(lend.getISBN() == null || lend.getISBN().equals("")){
-//			List list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
-//			Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
-//			request.put("list", list);
-//			request.put("page", page);
-//			request.put("readerId", lend.getReaderId());
-//			setMessage("ISBN不能为空！");
-//		}else if(bookDao.bookSelect(lend.getISBN()) == null){
-//			List list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
-//			Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
-//			
-//			request.put("list", list);
-//			request.put("page", page);
-//			request.put("readerId", lend.getReaderId());
-//			setMessage("不存在该书！");
-//		}else if(bookDao.bookSelect(lend.getISBN()).getSnum() == 0){
-//			List list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
-//			Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
-//			request.put("list", list);
-//			request.put("page", page);
-//			request.put("readerId", lend.getReaderId());
-//			setMessage("抱歉，该书当前库存量为0");
-//		}else if(lend.getBookId() == null || lend.getBookId().equals("") 
-//				|| lendDao.selectByBookId(lend.getReaderId()) != null){
-//			List list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
-//			Pager page = new Pager(pageNow, lendDao.selectLendSize(lend.getReaderId()));
-//			request.put("list", list);
-//			request.put("page", page);
-//			request.put("readerId", lend.getReaderId());
-//			this.setMessage("");
-//		}
-//	}
-//	
+	@SuppressWarnings("unchecked")
+	public String lendBook() throws Exception{  
+		BookDao bookDao = new BookDao();
+		Book book = bookDao.bookSelect(lend.getISBN());
+		
+		if(lend.getISBN() == null || lend.getISBN().equals("")){
+			setMessage("ISBN不能为空！");
+			return "success";
+		}else if(book == null){
+			setMessage("不存在该书！");
+			return "success";
+		}else if(book.getSnum() == 0){
+			List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
+			Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
+			Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			request.put("list", list);
+			request.put("page", page);
+			request.put("readerId", lend.getReaderId());
+			request.put("ISBN", lend.getISBN());
+			setMessage("抱歉，该书当前库存量为0");
+			return "success";
+		}
+		String currentId = (lendDao.selectMaxId() + 1) + "";											//得到当前最大bookId;
+		Date currentTime = new Date(System.currentTimeMillis());            //得到当前时间
+		lend.setBookId(currentId);
+		lend.setLendTime(currentTime);
+		try{
+			lendDao.addLend(lend);										//修改借书表；
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("更新借书表失败!");
+		}
+		book.setSnum(book.getSnum() - 1);
+		bookDao.updateBook(book);                                   //修改book的库存量
+		StudentDao stuDao = new StudentDao();
+		Student student = stuDao.selectByReaderId(lend.getReaderId());
+		student.setNum(student.getNum() + 1);
+		stuDao.updateStudent(student);								//修改学生的借书量；
+		List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.pageNow, this.pageSize);
+		Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("list", list);
+		request.put("page", page);
+		request.put("readerId", lend.getReaderId());				//最后显示借书情况；
+		request.put("ISBN", lend.getISBN());
+		return "success";
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String returnBook() throws Exception{  
+		BookDao bookDao = new BookDao();
+		Book book = bookDao.bookSelect(lend.getISBN());
+		
+		if(lend.getISBN() == null || lend.getISBN().equals("")){
+			setMessage("ISBN不能为空！");
+			return "success";
+		}else if(book == null){
+			setMessage("不存在该书！");
+			return "success";
+		}else if(book.getSnum() == book.getCnum()){
+			List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.getPageNow(), this.getPageSize());
+			Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
+			Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+			request.put("list", list);
+			request.put("page", page);
+			request.put("readerId", lend.getReaderId());
+			request.put("ISBN", lend.getISBN());
+			setMessage("抱歉，该书未被借出");
+			return "success";
+		}
+		String currentId = lendDao.selectMinIdFromISBN(lend) + "";		//得到当前isbn最小bookId(既是最早借出去的);
+		lend.setBookId(currentId);
+		try{
+			lendDao.dropLend(lend);										//修改借书表；
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("更新借书表失败!");
+		}
+		book.setSnum(book.getSnum() + 1);
+		bookDao.updateBook(book);                                   //修改book的库存量
+		StudentDao stuDao = new StudentDao();
+		Student student = stuDao.selectByReaderId(lend.getReaderId());
+		student.setNum(student.getNum() - 1);
+		stuDao.updateStudent(student);								//修改学生的借书量；
+		List<Lend> list = lendDao.selectLend(lend.getReaderId(), this.pageNow, this.pageSize);
+		Pager page = new Pager(pageNow,lendDao.selectLendSize(lend.getReaderId()));
+		Map<String, Object> request = (Map<String, Object>) ActionContext.getContext().get("request");
+		request.put("list", list);
+		request.put("page", page);
+		request.put("readerId", lend.getReaderId());				//最后显示借书情况；
+		request.put("ISBN", lend.getISBN());
+		return "success";
+	}
+	
 	
 	public int getPageNow() {
 		return pageNow;

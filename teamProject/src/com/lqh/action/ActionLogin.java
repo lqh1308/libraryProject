@@ -7,7 +7,7 @@ import com.lqh.model.Login;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ActionTest1 extends ActionSupport{
+public class ActionLogin extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	private Login login;
 	@Override
@@ -28,6 +28,18 @@ public class ActionTest1 extends ActionSupport{
 		}else{
 			return ERROR;
 		}
+	}
+	
+	public String register() throws Exception {
+		LoginDao loginDao = new LoginDao();
+		Login l = loginDao.checkLogin(login.getName(), login.getPassword());
+		if(l != null) {
+			addFieldError("×¢²á´íÎó", "ÒÑ´æÔÚÕÊºÅÃÜÂë¡£");
+			return "input";
+		}
+		loginDao.createLogin(login.getName(), login.getPassword());
+		addFieldError("×¢²á³É¹¦", "ÇëµÇÂ¼¡£");
+		return "input";
 	}
 	
 	public Login getLogin(){

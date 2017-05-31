@@ -17,10 +17,9 @@ public class LendDao {
 			conn = DBConn.getConn();
 			PreparedStatement pstmt = conn.prepareStatement(
 					"select bookId, ISBN, bookName, publisher, price, ltime " +
-					"from " +
-						"(select l.bookId, l.ISBN, b.bookName, b.publisher, b.price, l.ltime " + 
+					"from (select l.bookId, l.ISBN, b.bookName, b.publisher, b.price, l.ltime " +
 						"from lend as l, book as b " +
-						"where readerId=? and b.ISBN=l.ISBN LIMIT " + pageSize * (pageNow - 1) + ", " + pageSize + ") as  temp2");
+						"where readerId=? and b.ISBN=l.ISBN order by cast(l.bookId as signed integer) DESC LIMIT " + pageSize * (pageNow - 1) + ", " + pageSize + ") as  temp2");
 			pstmt.setString(1, readerId);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()){
@@ -31,6 +30,7 @@ public class LendDao {
 				lend.setPublisher(rs.getString(4));
 				lend.setPrice(rs.getFloat(5));
 				lend.setLendTime(rs.getDate(6));
+				System.out.println("ISBN : " + lend.getISBN());
 				list.add(lend);
 			}
 			return list;
@@ -91,7 +91,10 @@ public class LendDao {
 	public boolean addLend(Lend lend){
 		try{
 			conn = DBConn.getConn();
-			PreparedStatement pstmt = conn.prepareStatement("insert into(bookId,readerId,isbn,lendTime) lend value(?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement(
+					"insert into " +
+					"lend(bookId,readerId,isbn,LTime) " +
+					"value(?,?,?,?)");
 			pstmt.setString(1, lend.getBookId());
 			pstmt.setString(2, lend.getReaderId());
 			pstmt.setString(3, lend.getISBN());
@@ -121,6 +124,62 @@ public class LendDao {
 			pstmt.setString(7, book.getSummary());
 			pstmt.setString(8, book.getPhotoType());
 			pstmt.setString(9, book.getISBN());
+			pstmt.execute();
+			return true;
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			DBConn.closeConn();
+		}
+	}
+	
+	public int selectMinIdFromISBN(Lend lend) {
+		try{
+			conn = DBConn.getConn();
+			PreparedStatement pstmt = conn.prepareStatement("select bookid from lend where ISBN=? and readerId=? order by cast(bookid as signed integer) limit 0,1");
+			pstmt.setString(1, lend.getISBN());
+			pstmt.setString(2, lend.getReaderId());
+			ResultSet rs = (ResultSet) pstmt.executeQuery();
+			if(rs.next()){
+				int minId = rs.getInt(1);
+				return minId;
+			}
+			return 0;
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}finally{
+			DBConn.closeConn();
+		}
+	}
+	
+	public int selectMaxId(){
+		try{
+			conn = DBConn.getConn();
+			PreparedStatement pstmt = conn.prepareStatement("select bookid from lend order by cast(bookid as signed integer) DESC limit 0,1");
+			ResultSet rs = (ResultSet) pstmt.executeQuery();
+			if(rs.next()){
+				int maxId = rs.getInt(1);
+				return maxId;
+			}
+			return 0;
+		}catch(Exception e){
+			e.printStackTrace();
+			return 0;
+		}finally{
+			DBConn.closeConn();
+		}
+	}
+
+
+	public boolean dropLend(Lend lend) {
+		try{
+			conn = DBConn.getConn();
+			PreparedStatement pstmt = conn.prepareStatement(
+					"delete from " +
+					"lend where bookId=?");
+			pstmt.setString(1, lend.getBookId());
 			pstmt.execute();
 			return true;
 		}catch(Exception e){

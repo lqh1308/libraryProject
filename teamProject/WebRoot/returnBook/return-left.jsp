@@ -24,10 +24,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  	  	<s:form action="lendBook" method="post" theme="simple">
+  	  	<s:form action="returnBook" method="post" theme="simple">
   	<table style="margin-top:-302px;">
   		<tr>
-  			<td style="margin-left:50px; border:1px solid #CCC; height:40px; width:330px; text-align:center; margin-top:30px; background:#DDD; font-weight:bold;">借书界面</td>
+  			<td style="margin-left:50px; border:1px solid #CCC; height:40px; width:330px; text-align:center; margin-top:30px; background:#DDD; font-weight:bold;">还书界面</td>
   		</tr>
   		<tr>
   			<td height="80px;" background="#FFF"></td>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		</tr>
   		<tr>
   			<td style="height:40px; background:#CCC; text-align:center;">
-  				<s:submit value="借书" style="height:20px; width:60px; color:#666;"/>
+  				<s:submit value="还书" style="height:20px; width:60px; color:#666;"/>
   			</td>
   		</tr>
   	</table>

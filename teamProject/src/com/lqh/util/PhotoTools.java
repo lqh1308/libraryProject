@@ -17,18 +17,21 @@ public class PhotoTools {
 		int port = req.getServerPort();
 		String contextPath = req.getContextPath();
 		String result = null;
-		if(b.getPhotoType() == null || b.getPhotoType().equals("")) {		//检查有没有图片
-			result = scheme + "://" + basePath + ":" + port + contextPath + "/temp/" + DEFAULT_PHOTO;
-			System.out.println("result: " + result);
-			return result;
-		}
 		
 		File file = checkFile(b.getISBN());
+		
 		if(file != null) {
 			result = scheme + "://" + basePath + ":" + port + contextPath + "/temp/" + file.getName();
 			System.out.println("file is not null and the result: " + result);
 			return result;
 		}
+		
+//		if(b.getPhotoType() == null || b.getPhotoType().equals("")) {		//检查有没有图片后缀
+//			result = scheme + "://" + basePath + ":" + port + contextPath + "/temp/" + DEFAULT_PHOTO;
+//			System.out.println("photoType is null result: " + result);
+//			return result;
+//		}
+		
 		result = scheme + "://" + basePath + ":" + port + contextPath + "/temp/" + DEFAULT_PHOTO;
 		System.out.println("result: " + result);
 		return result;

@@ -27,10 +27,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		<tr>
 	  			<td colspan="2" width="100%" height="200px"><jsp:include page="/otherJsp/head.jsp"></jsp:include></td>
 	  		</tr>
+	  		<tr style="align:center;" >
+    			<td style="color:red"><s:property value="message"/></td>
+    		</tr>
 	  		<tr>
-	  			<td height="600px" width="25%" bgcolor="#EEE">
+	  			<td height="600px" width="30%" bgcolor="#EEE" rowspan="2">
+	  				<jsp:include page="/returnBook/return-left.jsp"></jsp:include>
 	  			</td>
-	  			<td height="600px" width="75%" bgcolor="#EEE"></td>
+	  			<td height="600px" width="70%" bgcolor="#EEE" valign="top">
+	  				<jsp:include page="/returnBook/returnBookInfo.jsp"></jsp:include>
+	  			</td>
+	  		</tr>
+	  		<tr style="align:center;" >
+	  			<td align="right" height="30px" width="75%" bgcolor="#EEE">
+	  				<jsp:include page="/returnBook/footerPage.jsp"/>
+	  			</td>
 	  		</tr>
 	  		<tr>
 	  			<td colspan="2" height="40px;"><span style="font-weight:bold;">湖南工业大学</span></td>

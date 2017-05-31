@@ -32,4 +32,20 @@ public class LoginDao {
 			DBConn.closeConn();
 		}
 	}
+	
+	public void createLogin(String name,String password){
+		try{
+			conn = DBConn.getConn();
+			PreparedStatement pstmt = conn.prepareStatement("insert into login(name,password,role) value(?,?,?)");
+			pstmt.setString(1, name);
+			pstmt.setString(2, password);
+			pstmt.setBoolean(3, false);
+
+			pstmt.execute();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			DBConn.closeConn();
+		}
+	}
 }

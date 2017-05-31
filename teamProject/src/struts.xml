@@ -3,10 +3,10 @@
 <struts>
 <package name="default" extends="struts-default">
 	<!-- 用户登录 -->
-	<action name="login" class="com.lqh.action.ActionTest1">
+	<action name="login" class="com.lqh.action.ActionLogin">
 		<result name="admin">/login/admin.jsp</result>
 		<result name="student">/login/student.jsp</result>
-		<result name="input">/login/login.jsp</result>
+		<result name="input">/login/Login.jsp</result>
 		<result name="error">/welcome/error.jsp</result>
 	</action>
 	
@@ -14,14 +14,54 @@
 	<action name="selectBook" class="com.lqh.action.ActionLend" method="selectAllLend">
 		<result name="success">/lend/lend.jsp</result>
 	</action>
-	<!-- 
-	<action name="selectBook.action" class="com.lqh.action.ActionLend" method="selectAllLend">
-		<result name="success">/lend/lend.jsp</result>
-	</action>
-	 -->
+	
 	<!-- 查询图书 -->
 	<action name="searchBook" class="com.lqh.action.ActionSearch" method="searchBook">
 		<result name="success">/searchBook/search.jsp</result>
+	</action>
+	
+	<!-- 借书 -->
+	<action name="lendBook" class="com.lqh.action.ActionLend" method="lendBook">
+		<result name="success">/lendCheck/lendCheck.jsp</result>		
+	</action>
+	
+	<!-- 还书 -->
+	<action name="returnBook" class="com.lqh.action.ActionLend" method="returnBook">
+		<result name="success">/returnBook/return.jsp</result>
+	</action>
+	
+	<!-- 用户管理 -->
+	<action name="addStudent" class="com.lqh.action.ActionStudent">
+		<result name="success">/readerManage/addStudent.jsp</result>
+		<result name="input">/readerManage/addStudent.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="validation.excludeMethods">*</param>
+			<param name="validation.includeMethods">addStudent</param>
+		</interceptor-ref>
+	</action>
+	<action name="deleteStudent" class="com.lqh.action.ActionStudent">
+		<result name="success">/readerManage/deleteStudent.jsp</result>
+		<result name="input">/readerManage/deleteStudent.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="validation.excludeMethods">*</param>
+			<param name="validation.includeMethods">addBook,updateBook</param>
+		</interceptor-ref>
+	</action>
+	<action name="updateStudent" class="com.lqh.action.ActionStudent">
+		<result name="success">/readerManage/updateStudent.jsp</result>
+		<result name="input">/readerManage/updateStudent.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="validation.excludeMethods">*</param>
+			<param name="validation.includeMethods">updateStudent</param>
+		</interceptor-ref>
+	</action>
+	<action name="selectStudent" class="com.lqh.action.ActionStudent">
+		<result name="success">/readerManage/selectStudent.jsp</result>
+		<result name="input">/readerManage/selectStudent.jsp</result>
+		<interceptor-ref name="defaultStack">
+			<param name="validation.excludeMethods">*</param>
+			<param name="validation.includeMethods">addBook,updateBook</param>
+		</interceptor-ref>
 	</action>
 	
 	<!-- 图书管理 -->

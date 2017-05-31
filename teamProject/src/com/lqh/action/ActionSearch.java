@@ -1,8 +1,5 @@
 package com.lqh.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.lqh.Dao.BookDao;
 import com.lqh.model.Book;
 import com.lqh.util.PhotoTools;
@@ -22,10 +19,7 @@ public class ActionSearch extends ActionSupport{
 			this.message = "不存在该图书";
 			return "success";
 		}
-		List<Book> list = new ArrayList<Book>();
-		list.add(new BookDao().bookSelect(book.getISBN()));
-		Book bookS = new Book();
-		bookS = (Book) list.get(0);										//获得图书的信息
+		Book bookS = new BookDao().bookSelect(book.getISBN());
 		bookS.setPhoto_url(PhotoTools.getPhotoUrl(bookS));
 	//	System.out.println(bookS.getAuthor());
 		
